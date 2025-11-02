@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: fastapi_app
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8010:8006"
+    networks:
+      - fastapi_network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    volumes:
+      - ./app/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app/static:/app/static
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+    networks:
+      - fastapi_network
+
+networks:
+  fastapi_network:
+    driver: bridge

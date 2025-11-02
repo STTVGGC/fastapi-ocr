@@ -1,0 +1,7 @@
+from fastapi import APIRouter
+
+router = APIRouter(tags=["System"])
+
+@router.get("/status")
+async def status():
+    return {"status": "running ✅"}
