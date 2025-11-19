@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File
-from utils.file_utils import save_file
-from core.config import UPLOAD_DIR
+from app.utils.file_utils import save_file
+from app.core.config import UPLOAD_DIR
 import uuid, os
 
 router = APIRouter(tags=["Upload"])
